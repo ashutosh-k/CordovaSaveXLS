@@ -1,28 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
- 
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-	id="cordova-plugin-save-xls"
-        version="0.1.0">
-    <name>Xls</name>
-    <description>A Cordova plugin to save XLS files</description>
-    <license>MIT</license>
-    <keywords>cordova, phonegap,xls</keywords>
- 
- 
-    <js-module src="www/xls.js" name="Xls">
-        <clobbers target="window.xls" />
-    </js-module>
- 
-    <!-- android -->
-    <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="Xls">
-                <param name="android-package" value="cordova.xls.Xls"/>
-            </feature>
-        </config-file>
- 
-        <source-file src="src/android/Xls.java" target-dir="src/cordova/xls" />      
-        <source-file src="lib/android/jxl.jar" target-dir="libs" />      
-     </platform>          
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="CordovaSaveXLS" version="0.0.1">
+	<name>CordovaSaveXLS</name>
+	<js-module name="CordovaSaveXLS" src="www/CordovaSaveXLS.js">
+		<clobbers target="cordova.plugins.CordovaSaveXLS"/>
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="CordovaSaveXLS">
+				<param name="android-package" value="CordovaSaveXLS.CordovaSaveXLS"/>
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="AndroidManifest.xml"/>
+		<source-file src="src/android/CordovaSaveXLS.java" target-dir="src/CordovaSaveXLS/CordovaSaveXLS"/>
+		<source-file src="lib/android/jxl.jar" target-dir="libs" />      
+	</platform>
 </plugin>

@@ -1,4 +1,4 @@
-package cordova.xls;
+package CordovaSaveXLS;
 
 
 import android.util.Log;
@@ -35,9 +35,11 @@ import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
 
-public class Xls extends CordovaPlugin {
+public class CordovaSaveXLS extends CordovaPlugin {
     public static final String ACTION_SAVE_XLS = "saveXLS";
     // Storage Permissions
+    public int rowPosition = 1;
+    public Boolean hasTitles = false;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -66,6 +68,8 @@ public class Xls extends CordovaPlugin {
 		   //Define o nome do diretório
                     this.dirname = params.getString("dirname");
                     String fileName = params.getString("filename");
+                    File localFile = this.getFilePath(fileName);
+                    localFile.delete();
                     
                     //Define o nome do arquivo
                     WritableWorkbook wb = this.createWorkbook(fileName);
@@ -77,6 +81,8 @@ public class Xls extends CordovaPlugin {
                     JSONArray lineItems = params.getJSONArray("data");
                     
                     //Loop pelas linhas de dados
+                    this.rowPosition = 1;
+                    this.hasTitles = false;
                     for (int i = 0, size = lineItems.length(); i < size; i++){
                         JSONObject objectInArray = lineItems.getJSONObject(i);
                         jsonObjectToCell(sheetObject, objectInArray);
@@ -88,9 +94,9 @@ public class Xls extends CordovaPlugin {
                     //Fechando o arquivo
                     wb.close();
 
-                    File localFile = this.getFilePath(fileName);
+                    
                     android.app.DownloadManager downloadManager = (android.app.DownloadManager) cordova.getActivity().getApplicationContext().getSystemService(Context.DOWNLOAD_SERVICE);
-                    downloadManager.addCompletedDownload(localFile.getName(), localFile.getName(), true, "application/vnd.ms-excel  ", localFile.getAbsolutePath(),localFile.length(),true);
+                    downloadManager.addCompletedDownload(localFile.getName(), localFile.getName(), true, "application/vnd.ms-excel", localFile.getAbsolutePath(),localFile.length(),true);
                     //Precisa adicionar esse callback para informar ao phonegap que
                     //a execução ocorreu com sucesso
                     callbackContext.success(localFile.getAbsolutePath());
@@ -120,13 +126,13 @@ public class Xls extends CordovaPlugin {
      * @property int rowPosition
      * Inicia a contagem das linhas em 1, para que a linha 0 seja 
      */
-    public int rowPosition = 1;
+
     
    /**
      * @property Boolean hasTitles
      * Armazena a informação se a planilha já tem títulos definidos
      */
-    public Boolean hasTitles = false;
+    
     
    /**
      * @param  sheetObj - Sheet object
