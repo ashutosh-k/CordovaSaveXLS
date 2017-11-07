@@ -24,7 +24,7 @@ A Phonegap plugin to save XLS files
 
 #### From github ####
     
-    cordova plugin add https://github.com/klawdyo/Phonegap-XLS-Plugin.git
+    cordova plugin add https://github.com/ashutosh-k/CordovaSaveXLS.git
     
 #### From file ####
     
