@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-save-xls",
+  "version": "0.0.1",
+  "description": "A plugin to save XLS file and add it to Download Manager.",
+  "cordova": {
+    "id": "cordova-plugin-save-xls",
+    "platforms": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashutosh-k/cordova-plugin-save-xls"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Ashutosh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashutosh-k/cordova-plugin-save-xls/issues"
+  },
+  "homepage": "https://github.com/ashutosh-k/cordova-plugin-save-xls#readme"
+}
